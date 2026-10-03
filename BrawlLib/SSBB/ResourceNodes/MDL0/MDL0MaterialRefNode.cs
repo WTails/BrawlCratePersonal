@@ -171,6 +171,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("Texture Matrix Effect")]
+        [Description("Additional Notes: Which camera from the scene file (SCN0) the Env Camera, Projection or Env Spec effect follows. -1 = none: the preview uses its own camera, so the effect follows your view as you orbit.")]
         public sbyte SCN0RefCamera
         {
             get => _texMatrixEffect.SCNCamera;
@@ -185,6 +186,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("Texture Matrix Effect")]
+        [Description("Additional Notes: Which light from the scene file (SCN0) the Env Light or Env Spec effect follows. -1 = none: the preview uses its built-in light.")]
         public sbyte SCN0RefLight
         {
             get => _texMatrixEffect.SCNLight;
@@ -199,6 +201,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("Texture Matrix Effect")]
+        [Description("Additional Notes: What this texture follows. TexCoord = just the model's UVs (Effect Matrix is not used).\nEnvCamera = environment/reflection map that shifts as the camera moves (skies, chrome, glass). Projection = the texture is projected from a camera onto the model, like a slide projector (clouds, shadows). EnvLight = follows a light. EnvSpec = a shiny highlight that depends on both camera and light.\nThe effect only shows on objects the game would also give a texture matrix to, so it may not appear on every object.")]
         public MappingMethod MapMode
         {
             get => _texMatrixEffect.MapMode;
@@ -214,6 +217,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("Texture Matrix Effect")]
+        [Description("Additional Notes: Automatically set to true when the Effect Matrix is the identity matrix (does nothing). When true the preview skips the Effect Matrix.")]
         public bool IdentityMatrix
         {
             get => _texMatrixEffect.IdentityMatrix;
@@ -229,6 +233,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("Texture Matrix Effect")]
         [TypeConverter(typeof(Matrix43StringConverter))]
+        [Description("Additional Notes: A 3x4 matrix that adjusts how the camera/light effect lands on the texture. The preview applies it in this order: Texture SRT, then Effect Matrix, then the camera/light matrix. Use it to shift, scale or rotate a reflection or projection (for example to line up a sky or cloud layer).\nOnly used when Map Mode is not TexCoord and the object has a texture matrix.")]
         public Matrix34 EffectMatrix
         {
             get => _texMatrixEffect.TextureMatrix;
@@ -897,7 +902,15 @@ namespace BrawlLib.SSBB.ResourceNodes
                 return _frameState._transform;
             }
 
-            return _frameState._transform * _effectMatrix;
+            //The effect matrix stored in the material is applied between the texture SRT and the camera/light
+            //based matrix: SRT * effect * camera/light matrix. (Same order as the game and noclip.)
+            Matrix effect = _effectMatrix;
+            if (!_texMatrixEffect.IdentityMatrix)
+            {
+                effect = (Matrix) _texMatrixEffect.TextureMatrix * effect;
+            }
+
+            return _frameState._transform * effect;
         }
 
         public void Default()
