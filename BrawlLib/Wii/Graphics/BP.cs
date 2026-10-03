@@ -924,7 +924,7 @@ namespace BrawlLib.Wii.Graphics
         public IndTexScale T_Scale0
         {
             get => (IndTexScale) ((_dat2 >> 4) & 0xF);
-            set => _dat2 = (byte) ((_dat2 & 0xF0) | ((int) value & 0xF));
+            set => _dat2 = (byte) ((_dat2 & 0x0F) | (((int) value & 0xF) << 4));
         }
 
         public IndTexScale S_Scale1
@@ -936,7 +936,7 @@ namespace BrawlLib.Wii.Graphics
         public IndTexScale T_Scale1
         {
             get => (IndTexScale) ((_dat1 >> 4) & 0xF);
-            set => _dat1 = (byte) ((_dat1 & 0xF0) | ((int) value & 0xF));
+            set => _dat1 = (byte) ((_dat1 & 0x0F) | (((int) value & 0xF) << 4));
         }
     }
 
