@@ -276,7 +276,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("XF TexGen Flags")]
-        [Description("Additional Notes: EmbossMap turns this texture coordinate into a NORMAL MAP / BUMP coordinate: the direction to a light (measured along the surface's tangent and binormal) is added to the coordinate chosen by \"Emboss Source\".\nUse it together with a TEV stage that uses a MatrixS/MatrixT (dynamic) indirect matrix and/or Bump Alpha to get bump lighting. The preview rebuilds the tangent and binormal from how the UVs lie on the surface, since it does not load them from the model.")]
+        [Description("Additional Notes: How the texture coordinate for this texture is generated.\nRegular = normal texturing. The source chosen in Coordinates is run through this texture's matrix (texture SRT and Effect Matrix).\nEmbossMap = a NORMAL MAP / BUMP coordinate: the direction to a light (measured along the surface's tangent and binormal) is added to the coordinate chosen by \"Emboss Source\". Use it together with a TEV stage that uses a MatrixS/MatrixT (dynamic) indirect matrix and/or Bump Alpha to get bump lighting. The preview rebuilds the tangent and binormal from how the UVs lie on the surface, since it does not load them from the model.\nColor0 / Color1 = the coordinate is taken from the RED and GREEN of the lit vertex color channel 0 (or channel 1): red becomes S (horizontal) and green becomes T (vertical). The texture matrix is NOT used for this on the real hardware. This lets the lighting result pick a spot on a gradient/ramp texture, which is how toon (cel) shading is made. Color0 = channel 0, Color1 = channel 1.\nIn the preview: Color0 / Color1 only take effect when Coordinates is set to Colors (it uses the type to pick the channel), and the preview still applies the texture matrix to the color, which the real hardware does not. Regular and EmbossMap use channel 0 if Coordinates is Colors.")]
         public TexTexgenType Type
         {
             get => _texMtxFlags.TexGenType;
@@ -291,6 +291,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("XF TexGen Flags")]
+        [Description("Additional Notes: Which piece of vertex data feeds the texture coordinate generator (before the texture matrix is applied).\nTexCoord0 - TexCoord7 = the model's UV set with that number. This is normal texturing.\nGeometry = the vertex's position in the model. Used with a texture matrix (and the Projection / Input Form settings) to project a texture straight onto the model, like a slide projector or a planar map.\nNormals = the vertex's normal direction. Used for environment / reflection maps (Map Mode EnvCamera with the Effect Matrix): skies reflected in shiny surfaces, chrome, matcap style lighting.\nColors = the lit vertex color. Use it with Type Color0 or Color1 to choose which color channel; red and green become the S and T coordinate. Used for toon / ramp lookups.\nBinormalsT / BinormalsB = the direction of the surface along the texture's horizontal (T = tangent) or vertical (B = binormal) axis. Used for bump / normal map effects and stretched (anisotropic) shine. The preview does not load these from the model, so a material set to use them may not draw correctly in the preview. (The EmbossMap type works around this by rebuilding them from the UVs.)\nIn the preview the UV sets are the model's own, and the Normals/Geometry sources use the model-space values.")]
         public TexSourceRow Coordinates
         {
             get => _texMtxFlags.SourceRow;
@@ -336,6 +337,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("XF TexGen Flags")]
+        [Description("Additional Notes: When on, the generated texture coordinate is rescaled to length 1 after the texture matrix is applied.\nTurn it on for environment / reflection maps (Coordinates = Normals): it keeps the reflection direction a proper unit direction even if the model or its normals are scaled, so the reflection does not stretch or shrink. Leave it off for ordinary UV coordinates; normalizing those would squash the texture.\nIn the preview this is approximate: the extra fourth component is included when normalizing, and scaling a mesh with bones can make it look different from the game.")]
         public bool Normalize
         {
             get => _dualTexFlags._normalEnable != 0;
