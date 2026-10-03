@@ -236,6 +236,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("TEV Indirect Texture Sources")]
         [DisplayName("Indirect Texture Map 0 ID")]
+        [Description("Additional Notes: Which of the material's textures is used as indirect texture 0: the picture whose colors push the surface around (warp) or describe the bumps (normal map). 0 = the first texture in the material.\nThe picture is read as three values (s, t, u) from its alpha, blue and green channels, which is how the GameCube/Wii hardware reads it.\nOnly used when a TEV stage points at it with its Texture Stage setting.")]
         public TexMapID IndTex0MapID
         {
             get => _swapBlock._Value16.TexMap0;
@@ -248,6 +249,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("TEV Indirect Texture Sources")]
         [DisplayName("Indirect Texture Coord 0 ID")]
+        [Description("Additional Notes: Which texture coordinate (UV set) is used to look up indirect texture 0, in other words how the warp or normal map pattern is laid over the model. Usually the same number as the picture's own coordinate.\nThe coordinate is divided by that indirect texture's \"divide-by\" setting on the material.")]
         public TexCoordID IndTex0Coord
         {
             get => _swapBlock._Value16.TexCoord0;
@@ -260,6 +262,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("TEV Indirect Texture Sources")]
         [DisplayName("Indirect Texture Map 1 ID")]
+        [Description("Additional Notes: Which of the material's textures is used as indirect texture 1: the picture whose colors push the surface around (warp) or describe the bumps (normal map). 0 = the first texture in the material.\nThe picture is read as three values (s, t, u) from its alpha, blue and green channels, which is how the GameCube/Wii hardware reads it.\nOnly used when a TEV stage points at it with its Texture Stage setting.")]
         public TexMapID IndTex1MapID
         {
             get => _swapBlock._Value16.TexMap1;
@@ -272,6 +275,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("TEV Indirect Texture Sources")]
         [DisplayName("Indirect Texture Coord 1 ID")]
+        [Description("Additional Notes: Which texture coordinate (UV set) is used to look up indirect texture 1, in other words how the warp or normal map pattern is laid over the model. Usually the same number as the picture's own coordinate.\nThe coordinate is divided by that indirect texture's \"divide-by\" setting on the material.")]
         public TexCoordID IndTex1Coord
         {
             get => _swapBlock._Value16.TexCoord1;
@@ -284,6 +288,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("TEV Indirect Texture Sources")]
         [DisplayName("Indirect Texture Map 2 ID")]
+        [Description("Additional Notes: Which of the material's textures is used as indirect texture 2: the picture whose colors push the surface around (warp) or describe the bumps (normal map). 0 = the first texture in the material.\nThe picture is read as three values (s, t, u) from its alpha, blue and green channels, which is how the GameCube/Wii hardware reads it.\nOnly used when a TEV stage points at it with its Texture Stage setting.")]
         public TexMapID IndTex2MapID
         {
             get => _swapBlock._Value16.TexMap2;
@@ -296,6 +301,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("TEV Indirect Texture Sources")]
         [DisplayName("Indirect Texture Coord 2 ID")]
+        [Description("Additional Notes: Which texture coordinate (UV set) is used to look up indirect texture 2, in other words how the warp or normal map pattern is laid over the model. Usually the same number as the picture's own coordinate.\nThe coordinate is divided by that indirect texture's \"divide-by\" setting on the material.")]
         public TexCoordID IndTex2Coord
         {
             get => _swapBlock._Value16.TexCoord2;
@@ -308,6 +314,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("TEV Indirect Texture Sources")]
         [DisplayName("Indirect Texture Map 3 ID")]
+        [Description("Additional Notes: Which of the material's textures is used as indirect texture 3: the picture whose colors push the surface around (warp) or describe the bumps (normal map). 0 = the first texture in the material.\nThe picture is read as three values (s, t, u) from its alpha, blue and green channels, which is how the GameCube/Wii hardware reads it.\nOnly used when a TEV stage points at it with its Texture Stage setting.")]
         public TexMapID IndTex3MapID
         {
             get => _swapBlock._Value16.TexMap3;
@@ -320,6 +327,7 @@ namespace BrawlLib.SSBB.ResourceNodes
 
         [Category("TEV Indirect Texture Sources")]
         [DisplayName("Indirect Texture Coord 3 ID")]
+        [Description("Additional Notes: Which texture coordinate (UV set) is used to look up indirect texture 3, in other words how the warp or normal map pattern is laid over the model. Usually the same number as the picture's own coordinate.\nThe coordinate is divided by that indirect texture's \"divide-by\" setting on the material.")]
         public TexCoordID IndTex3Coord
         {
             get => _swapBlock._Value16.TexCoord3;

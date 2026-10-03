@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace BrawlLib.Wii.Graphics
 {
-    public unsafe class ShaderGenerator
+    public unsafe partial class ShaderGenerator
     {
         public static bool UsePixelLighting
         {
@@ -98,6 +98,9 @@ namespace BrawlLib.Wii.Graphics
             Uniform(pHandle, _uSCNFogEndName, fog.End);
             Uniform(pHandle, _uSCNFogColorName, fog.Color);
             Uniform(pHandle, _uSCNFogTypeName, (int) fog.Type);
+
+            //Indirect texturing (see ShaderGenerator.Indirect.cs)
+            SetIndirectUniforms(mat);
         }
 
         private static void WriteVertexUniforms()
@@ -146,6 +149,9 @@ namespace BrawlLib.Wii.Graphics
             wU("vec3 {0};", _uSCNFogColorName);
 
             wl();
+
+            //Indirect texturing (see ShaderGenerator.Indirect.cs)
+            WriteIndirectFragmentUniforms();
         }
 
         private static void WriteVarying()
@@ -285,7 +291,7 @@ namespace BrawlLib.Wii.Graphics
             Comment(_material.Name);
             wl();
             WriteVersion();
-            if (UsePixelLighting)
+            if (UsePixelLighting || NeedsEmbossLights())
             {
                 WriteLightFrameStruct();
             }
@@ -360,6 +366,9 @@ namespace BrawlLib.Wii.Graphics
                         }
                     }
                 }
+
+                //Indirect texturing and emboss (normal map) texture coordinates (see ShaderGenerator.Indirect.cs)
+                WriteIndirectPrelude();
 
                 //Write the output color register value
                 //In the event that a shader isn't injected, the frag shader will still compile
@@ -935,7 +944,11 @@ namespace BrawlLib.Wii.Graphics
                     int mapID = (int) stage.TextureMapID;
                     int coordID = (int) stage.TextureCoordID;
 
-                    if (UsePixelLighting)
+                    if (WriteIndirectTextureLookup(stage, mapID, coordID, tswap))
+                    {
+                        //Written by the indirect texturing code
+                    }
+                    else if (UsePixelLighting)
                     {
                         wl(_texColorName + " = texture2D(texture{0}, uv{1}.st).{2};",
                             mapID.ToString(), coordID.ToString(), tswap);
@@ -963,8 +976,8 @@ namespace BrawlLib.Wii.Graphics
                         break;
                     case ColorSelChan.BumpAlpha:
                     case ColorSelChan.NormalizedBumpAlpha:
-                    //WHAT DO?
-                    //break;
+                        WriteBumpAlpha(stage);
+                        break;
                     case ColorSelChan.Zero:
                     default:
                         wl(_rasColorName + " = {0};", vec4Zero);

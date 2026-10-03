@@ -658,6 +658,7 @@ Those properties can use this color as an argument. This color is referred to as
         #region Indirect Texturing
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: What kind of effect indirect texture 1 (TEV Indirect \"Texture Stage\" 0) is meant for.\nWarp = ripples, heat haze and other distortion. The preview shows this using the Indirect Matrices and the TEV stage indirect settings.\nNormalMap / NormalMapSpecular = bump mapping from a normal map. The preview shows this when one of the material's textures has its TexGen Type set to EmbossMap.\nFur and the rest are special cases the preview does not use.\nChanging this label by itself does not change how the preview looks.")]
         public IndirectMethod IndirectMethodTex1
         {
             get => (IndirectMethod) _indirectMethod1;
@@ -672,6 +673,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: What kind of effect indirect texture 2 (TEV Indirect \"Texture Stage\" 1) is meant for.\nWarp = ripples, heat haze and other distortion. The preview shows this using the Indirect Matrices and the TEV stage indirect settings.\nNormalMap / NormalMapSpecular = bump mapping from a normal map. The preview shows this when one of the material's textures has its TexGen Type set to EmbossMap.\nFur and the rest are special cases the preview does not use.\nChanging this label by itself does not change how the preview looks.")]
         public IndirectMethod IndirectMethodTex2
         {
             get => (IndirectMethod) _indirectMethod2;
@@ -686,6 +688,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: What kind of effect indirect texture 3 (TEV Indirect \"Texture Stage\" 2) is meant for.\nWarp = ripples, heat haze and other distortion. The preview shows this using the Indirect Matrices and the TEV stage indirect settings.\nNormalMap / NormalMapSpecular = bump mapping from a normal map. The preview shows this when one of the material's textures has its TexGen Type set to EmbossMap.\nFur and the rest are special cases the preview does not use.\nChanging this label by itself does not change how the preview looks.")]
         public IndirectMethod IndirectMethodTex3
         {
             get => (IndirectMethod) _indirectMethod3;
@@ -700,6 +703,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: What kind of effect indirect texture 4 (TEV Indirect \"Texture Stage\" 3) is meant for.\nWarp = ripples, heat haze and other distortion. The preview shows this using the Indirect Matrices and the TEV stage indirect settings.\nNormalMap / NormalMapSpecular = bump mapping from a normal map. The preview shows this when one of the material's textures has its TexGen Type set to EmbossMap.\nFur and the rest are special cases the preview does not use.\nChanging this label by itself does not change how the preview looks.")]
         public IndirectMethod IndirectMethodTex4
         {
             get => (IndirectMethod) _indirectMethod4;
@@ -714,6 +718,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: DIVIDE-BY value for the horizontal (S) texture coordinate used to look up indirect texture 1 (the warp or normal map picture).\nDivideBy1 = the picture covers the surface at normal size. DivideBy2 = twice as big, DivideBy4 = four times as big, and so on up to DivideBy256.\nBigger divide-by = a larger, smoother, slower looking pattern. Smaller = a tighter, busier pattern.\nThis only changes the SIZE of the pattern. It does not change how strong the distortion is; strength comes from the TEV stage's Matrix setting.\nThe preview updates as soon as you change it.")]
         public IndTexScale IndirectTex1ScaleS
         {
             get => _indMtx.SS0val.S_Scale0;
@@ -728,6 +733,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: DIVIDE-BY value for the vertical (T) texture coordinate used to look up indirect texture 1 (the warp or normal map picture).\nDivideBy1 = the picture covers the surface at normal size. DivideBy2 = twice as big, DivideBy4 = four times as big, and so on up to DivideBy256.\nBigger divide-by = a larger, smoother, slower looking pattern. Smaller = a tighter, busier pattern.\nThis only changes the SIZE of the pattern. It does not change how strong the distortion is; strength comes from the TEV stage's Matrix setting.\nThe preview updates as soon as you change it.")]
         public IndTexScale IndirectTex1ScaleT
         {
             get => _indMtx.SS0val.T_Scale0;
@@ -742,6 +748,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: DIVIDE-BY value for the horizontal (S) texture coordinate used to look up indirect texture 2 (the warp or normal map picture).\nDivideBy1 = the picture covers the surface at normal size. DivideBy2 = twice as big, DivideBy4 = four times as big, and so on up to DivideBy256.\nBigger divide-by = a larger, smoother, slower looking pattern. Smaller = a tighter, busier pattern.\nThis only changes the SIZE of the pattern. It does not change how strong the distortion is; strength comes from the TEV stage's Matrix setting.\nThe preview updates as soon as you change it.")]
         public IndTexScale IndirectTex2ScaleS
         {
             get => _indMtx.SS0val.S_Scale1;
@@ -756,6 +763,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: DIVIDE-BY value for the vertical (T) texture coordinate used to look up indirect texture 2 (the warp or normal map picture).\nDivideBy1 = the picture covers the surface at normal size. DivideBy2 = twice as big, DivideBy4 = four times as big, and so on up to DivideBy256.\nBigger divide-by = a larger, smoother, slower looking pattern. Smaller = a tighter, busier pattern.\nThis only changes the SIZE of the pattern. It does not change how strong the distortion is; strength comes from the TEV stage's Matrix setting.\nThe preview updates as soon as you change it.")]
         public IndTexScale IndirectTex2ScaleT
         {
             get => _indMtx.SS0val.T_Scale1;
@@ -770,6 +778,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: DIVIDE-BY value for the horizontal (S) texture coordinate used to look up indirect texture 3 (the warp or normal map picture).\nDivideBy1 = the picture covers the surface at normal size. DivideBy2 = twice as big, DivideBy4 = four times as big, and so on up to DivideBy256.\nBigger divide-by = a larger, smoother, slower looking pattern. Smaller = a tighter, busier pattern.\nThis only changes the SIZE of the pattern. It does not change how strong the distortion is; strength comes from the TEV stage's Matrix setting.\nThe preview updates as soon as you change it.")]
         public IndTexScale IndirectTex3ScaleS
         {
             get => _indMtx.SS1val.S_Scale0;
@@ -784,6 +793,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: DIVIDE-BY value for the vertical (T) texture coordinate used to look up indirect texture 3 (the warp or normal map picture).\nDivideBy1 = the picture covers the surface at normal size. DivideBy2 = twice as big, DivideBy4 = four times as big, and so on up to DivideBy256.\nBigger divide-by = a larger, smoother, slower looking pattern. Smaller = a tighter, busier pattern.\nThis only changes the SIZE of the pattern. It does not change how strong the distortion is; strength comes from the TEV stage's Matrix setting.\nThe preview updates as soon as you change it.")]
         public IndTexScale IndirectTex3ScaleT
         {
             get => _indMtx.SS1val.T_Scale0;
@@ -798,6 +808,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: DIVIDE-BY value for the horizontal (S) texture coordinate used to look up indirect texture 4 (the warp or normal map picture).\nDivideBy1 = the picture covers the surface at normal size. DivideBy2 = twice as big, DivideBy4 = four times as big, and so on up to DivideBy256.\nBigger divide-by = a larger, smoother, slower looking pattern. Smaller = a tighter, busier pattern.\nThis only changes the SIZE of the pattern. It does not change how strong the distortion is; strength comes from the TEV stage's Matrix setting.\nThe preview updates as soon as you change it.")]
         public IndTexScale IndirectTex4ScaleS
         {
             get => _indMtx.SS1val.S_Scale1;
@@ -812,6 +823,7 @@ Those properties can use this color as an argument. This color is referred to as
         }
 
         [Category("Indirect Texturing")]
+        [Description("Additional Notes: DIVIDE-BY value for the vertical (T) texture coordinate used to look up indirect texture 4 (the warp or normal map picture).\nDivideBy1 = the picture covers the surface at normal size. DivideBy2 = twice as big, DivideBy4 = four times as big, and so on up to DivideBy256.\nBigger divide-by = a larger, smoother, slower looking pattern. Smaller = a tighter, busier pattern.\nThis only changes the SIZE of the pattern. It does not change how strong the distortion is; strength comes from the TEV stage's Matrix setting.\nThe preview updates as soon as you change it.")]
         public IndTexScale IndirectTex4ScaleT
         {
             get => _indMtx.SS1val.T_Scale1;
@@ -1187,7 +1199,7 @@ For example, if the shader has two stages but this number is 1, the second stage
         }
 
         [Category("Material")]
-        [Description("The number of active indirect textures in the shader.")]
+        [Description("The number of active indirect textures in the shader." + "\n\nAdditional Notes: This is the master switch for indirect texturing in the preview. 0 = off: every TEV stage is drawn normally and all indirect settings are ignored.\nIf distortion or bump mapping is not showing, make sure this is higher than the highest \"Texture Stage\" number used by the TEV stages (a stage using Texture Stage 0 needs this to be at least 1).")]
         public int IndirectShaderStages
         {
             get => _activeIndStages;
@@ -1262,7 +1274,7 @@ For example, if the shader has two stages but this number is 1, the second stage
 
         [Category("SCN0 References")]
         [Description(
-            "This is the index of the SCN0 Light that should be used for indirect texture 1 if it is a normal map. Set to -1 if unused.")]
+            "This is the index of the SCN0 Light that should be used for indirect texture 1 if it is a normal map. Set to -1 if unused." + "\n\nAdditional Notes: In the game this picks the scene light that the normal map bump effect follows.\nThe preview does not use this value. It takes the light from the \"Emboss Light\" setting of the texture whose TexGen Type is EmbossMap.")]
         public sbyte NormMapRefLight1
         {
             get => _normMapRefLight1;
@@ -1278,7 +1290,7 @@ For example, if the shader has two stages but this number is 1, the second stage
 
         [Category("SCN0 References")]
         [Description(
-            "This is the index of the SCN0 Light that should be used for indirect texture 2 if it is a normal map. Set to -1 if unused.")]
+            "This is the index of the SCN0 Light that should be used for indirect texture 2 if it is a normal map. Set to -1 if unused." + "\n\nAdditional Notes: In the game this picks the scene light that the normal map bump effect follows.\nThe preview does not use this value. It takes the light from the \"Emboss Light\" setting of the texture whose TexGen Type is EmbossMap.")]
         public sbyte NormMapRefLight2
         {
             get => _normMapRefLight2;
@@ -1294,7 +1306,7 @@ For example, if the shader has two stages but this number is 1, the second stage
 
         [Category("SCN0 References")]
         [Description(
-            "This is the index of the SCN0 Light that should be used for indirect texture 3 if it is a normal map. Set to -1 if unused.")]
+            "This is the index of the SCN0 Light that should be used for indirect texture 3 if it is a normal map. Set to -1 if unused." + "\n\nAdditional Notes: In the game this picks the scene light that the normal map bump effect follows.\nThe preview does not use this value. It takes the light from the \"Emboss Light\" setting of the texture whose TexGen Type is EmbossMap.")]
         public sbyte NormMapRefLight3
         {
             get => _normMapRefLight3;
@@ -1310,7 +1322,7 @@ For example, if the shader has two stages but this number is 1, the second stage
 
         [Category("SCN0 References")]
         [Description(
-            "This is the index of the SCN0 Light that should be used for indirect texture 4 if it is a normal map. Set to -1 if unused.")]
+            "This is the index of the SCN0 Light that should be used for indirect texture 4 if it is a normal map. Set to -1 if unused." + "\n\nAdditional Notes: In the game this picks the scene light that the normal map bump effect follows.\nThe preview does not use this value. It takes the light from the \"Emboss Light\" setting of the texture whose TexGen Type is EmbossMap.")]
         public sbyte NormMapRefLight4
         {
             get => _normMapRefLight4;
@@ -2097,9 +2109,21 @@ For example, if the shader has two stages but this number is 1, the second stage
 
         public TextureFrameState[] _indirectFrameStates = new TextureFrameState[3];
 
+        /// <summary>
+        /// True for each indirect matrix slot that is currently driven by an SRT0 animation.
+        /// The preview then builds that indirect matrix from _indirectFrameStates
+        /// instead of using the matrix stored in the material.
+        /// </summary>
+        public bool[] _indirectAnimated = new bool[3];
+
         internal void ApplySRT0(SRT0Node node, float index)
         {
             SRT0EntryNode e;
+
+            for (int n = 0; n < _indirectAnimated.Length; n++)
+            {
+                _indirectAnimated[n] = false;
+            }
 
             if (node == null || index < 1)
             {
@@ -2126,6 +2150,9 @@ For example, if the shader has two stages but this number is 1, the second stage
                         {
                             if (node != null && index >= 1)
                             {
+                                //Tracks without keyframes use neutral values (scale 1, rotation 0, translation 0)
+                                *state = TextureFrameState.Neutral;
+
                                 float* f = (float*) state;
                                 for (int i = 0; i < 5; i++)
                                 {
@@ -2137,6 +2164,7 @@ For example, if the shader has two stages but this number is 1, the second stage
 
                                 state->MatrixMode = node.MatrixMode;
                                 state->CalcTransforms();
+                                _indirectAnimated[t._textureIndex] = true;
                             }
                             else
                             {

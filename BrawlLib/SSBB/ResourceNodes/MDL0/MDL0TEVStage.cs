@@ -309,7 +309,7 @@ This stage will grab a pixel fragment from the selected texture reference mapped
             @"Retrieves a color outputted from the material's light channels. This DOES NOT get a color straight from color nodes!
 BumpAlpha retrieves a color from ???
 NormalizedBumpAlpha is the same as Bump Alpha, but normalized to the range [0.0, 1.0].
-Zero returns a color with all channels set to 0.")]
+Zero returns a color with all channels set to 0." + "\n\nAdditional Notes: BumpAlpha and NormalizedBumpAlpha use the \"Alpha\" selection and \"Texture Stage\" from this stage's TEV indirect texturing settings, so indirect texturing must be active for them to do anything in the preview.")]
         public ColorSelChan RasterColor
         {
             get => _colorChan;
@@ -616,6 +616,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: Which indirect texture (0-3, matching \"Indirect Texture Map/Coord 0-3\" on the shader) this TEV stage uses.\nIt does nothing unless Matrix is not NoMatrix, \"Use Prev Stage\" is on, or this stage reads Bump Alpha. The material's Indirect Shader Stages must also be higher than this number.")]
         public IndTexStageID TexStage
         {
             get => _cmd.StageID;
@@ -627,6 +628,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: How many bits of each indirect texture value are used as the push amount.\n8-bit is the most detailed (the value is re-centered around 0 using Bias). 5/4/3-bit use fewer bits and leave the remaining top bits free to be used as Bump Alpha.")]
         public IndTexFormat TexFormat
         {
             get => _cmd.Format;
@@ -638,6 +640,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: Which of the three indirect values (S, T, U) are shifted so that the middle of the range means \"no push\". For 8-bit this subtracts 128; for the smaller formats it adds 1.\nWarps nearly always use ST or STU. With None, everything gets pushed one way.")]
         public IndTexBiasSel Bias
         {
             get => _cmd.Bias;
@@ -649,6 +652,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: Which of the three indirect values (S, T or U) becomes Bump Alpha: a single brightness value that a TEV stage can read by setting its Raster Color to BumpAlpha or NormalizedBumpAlpha. This is how bump mapping shading is made.\nOff = no Bump Alpha.")]
         public IndTexAlphaSel Alpha
         {
             get => _cmd.Alpha;
@@ -660,6 +664,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: The \"strength\" used by this stage. NoMatrix = this stage is not distorted.\nMatrix0/1/2 = a fixed matrix stored in the material that turns the indirect values into a sideways / up-down push (used for warps like water).\nMatrixS0-2 and MatrixT0-2 = \"dynamic\" matrices used for BUMP MAPPING: the push is the stage's own texture coordinate multiplied by the S (or T) value. This is how a normal map's light direction (an EmbossMap texture coordinate) becomes bumps.")]
         public IndTexMtxID Matrix
         {
             get => _cmd.Matrix;
@@ -671,6 +676,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: What happens to the horizontal (S) texture coordinate, measured in pixels of the texture, BEFORE the push is added.\nNoWrap = left alone. Wrap256 to Wrap16 = repeats every that many pixels. Wrap0 = flattened to 0. Leave this on NoWrap unless the game's material does otherwise.")]
         public IndTexWrap SWrap
         {
             get => _cmd.SWrap;
@@ -682,6 +688,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: Same as SWrap, but for the vertical (T) texture coordinate.")]
         public IndTexWrap TWrap
         {
             get => _cmd.TWrap;
@@ -693,6 +700,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: When on, this stage's push is added on top of the coordinate calculated by the previous TEV stage, so effects stack (for example two layers of water ripples moving in different directions).")]
         public bool UsePrevStage
         {
             get => _cmd.UsePrevStage;
@@ -704,6 +712,7 @@ Register2: sets the alpha of the 3rd color register in the material's TEV Color 
         }
 
         [Category("d TEV Indirect Texturing")]
+        [Description("Additional Notes: Controls which coordinate decides the texture's sharpness (mipmap level). The preview does not use this setting.")]
         public bool UnmodifiedLOD
         {
             get => _cmd.UnmodifiedLOD;

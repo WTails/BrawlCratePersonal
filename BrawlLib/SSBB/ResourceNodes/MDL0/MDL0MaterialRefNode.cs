@@ -271,6 +271,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("XF TexGen Flags")]
+        [Description("Additional Notes: EmbossMap turns this texture coordinate into a NORMAL MAP / BUMP coordinate: the direction to a light (measured along the surface's tangent and binormal) is added to the coordinate chosen by \"Emboss Source\".\nUse it together with a TEV stage that uses a MatrixS/MatrixT (dynamic) indirect matrix and/or Bump Alpha to get bump lighting. The preview rebuilds the tangent and binormal from how the UVs lie on the surface, since it does not load them from the model.")]
         public TexTexgenType Type
         {
             get => _texMtxFlags.TexGenType;
@@ -300,6 +301,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("XF TexGen Flags")]
+        [Description("Additional Notes: Only used when Type is EmbossMap. The number (0-7) of an earlier texture coordinate to start from, usually the normal map's own coordinate. It must be lower than this texture's own number; otherwise this texture's own coordinate is used.")]
         public int EmbossSource
         {
             get => _texMtxFlags.EmbossSource;
@@ -314,6 +316,7 @@ namespace BrawlLib.SSBB.ResourceNodes
         }
 
         [Category("XF TexGen Flags")]
+        [Description("Additional Notes: Only used when Type is EmbossMap. Which light (0-7) of the scene's light set the bumps are lit by. If that light is off the preview uses light 0, and if that is off too it uses a fixed light direction so bumps stay visible.")]
         public int EmbossLight
         {
             get => _texMtxFlags.EmbossLight;
